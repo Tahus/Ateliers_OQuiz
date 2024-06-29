@@ -11,7 +11,7 @@ class Level extends Sequelize.Model {};
 Level.init({
   // Premier paramètre : un objet qui définit le type des champs
   // Remaque : en cas de relation, on ne définit pas les champs "machin_id" !
-  //   ils seront définis implicitement lorsqu'on définira nos relations
+  // ils seront définis implicitement lorsqu'on définira nos relations
   name: Sequelize.STRING
 },{
   // le 2ème paramètre contient les options de connections

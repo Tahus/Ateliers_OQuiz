@@ -35,7 +35,6 @@ app.use(userMiddleware);
 const router = require('./app/router');
 app.use(router);
 
-// lancement du serveur
-app.listen( PORT,  () => {
-  console.log(`Listening on ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`);
 });

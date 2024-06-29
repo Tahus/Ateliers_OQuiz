@@ -1,5 +1,7 @@
 const { Tag } = require('../models');
 
+
+// Affichage simple de la liste de l'ensemble des tags
 const tagController = {
   tagList: async (req, res) => {
     try {

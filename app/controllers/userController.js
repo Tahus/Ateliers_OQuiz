@@ -63,15 +63,19 @@ const userController = {
     res.render('login');
   },
 
+
+  //Connexion de l'utilisateur
   loginAction: async (req, res) => {
     try {
-      //    console.log(req.body);
+      // console.log(req.body);
       // on tente de récupérer l'utilisateur qui possède l'email donné
       const user = await User.findOne({
         where: {
           email: req.body.email
         }
       });
+
+      // si on n'a pas d'utilisateur, on renvoie une erreur
       if (!user) {
         return res.render('login', {
           error: "Cet email n'existe pas."
@@ -80,6 +84,7 @@ const userController = {
 
       // Si on a un utilisateur, on teste si le mot de passe est valide
       const validPwd = await bcrypt.compare(req.body.password, user.password);
+      // si le mdp n'est pas valide, on renvoie une erreur
       if (!validPwd) {
         return res.render('login', {
           error: "Ce n'est pas le bon mot de passe."

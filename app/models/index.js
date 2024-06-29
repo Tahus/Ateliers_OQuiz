@@ -6,12 +6,14 @@ const Tag = require('./tag');
 const User = require('./user');
 
 // une question a plusieurs answers
+// traducute de Question has many answers =  Question a plusieurs réponses
 Question.hasMany(Answer, {
     foreignKey: "question_id",
     as: "answers"
 });
 
 // réciproque : une answer est lié à une seule question
+// traduction de Answer belongs to Question = Réponse appartient à une question
 Answer.belongsTo(Question, {
     foreignKey: "question_id",
     as: "question"
