@@ -12,7 +12,13 @@ const quizzController = {
           { association: 'tags'}
         ]
       });
-      res.render('quiz', {quiz});
+      // Si l'utilisateur est connecté, il accède à la page de jeu
+      if (req.session.user) {
+        res.render('play_quiz', {quiz});
+      } else {
+        // Sinon, il est redirigé vers la page de quiz "statique"
+        res.render('quiz', {quiz});
+      }
     } catch (err) {
       console.trace(err);
       res.status(500).send(err);
