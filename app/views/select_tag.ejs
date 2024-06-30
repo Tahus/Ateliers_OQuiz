@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h2 class="h1 display-4">O'Quiz</h2>
+    <p class="lead">Sélectionnez le tag à modifier</p>
+  </div>
+
+<div class="row">
+
+    <% for(const tag of tags) { %>
+        <div class="col-3 p-4 text-center">
+            <% if (tag.color) {%>
+                <a class="btn btn-block tag " style="background-color: <%= tag.color %>" href="/tag/modify/<%= tag.id %>">
+                    <%= tag.name %>
+                </a>
+            <%} else {%>
+                <a class="btn btn-block tag tag--<%= tag.name.toLowerCase() %>" href="/tag/modify/<%= tag.id %>">
+                    <%= tag.name %>
+                </a>
+            <%}%>
+        </div>
+    <% } %>
+
+</div>
+
+<%- include('partials/footer') %>

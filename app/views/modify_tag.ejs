@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h2 class="h1 display-4">Modifier un tag</h2>
+        </div>
+        <% if (locals.error) {%>
+            <div class="error"><%= error %></div>
+        <%}%>
+        <% if (locals.result) {%>
+            <div class="result"><%= result %></div>
+        <%}%>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <form action="/tag/modify" method="POST" class="form-signup">
+                    <input type='hidden' name='id' value=<%= tag.id %>>
+                    <div class="form-label-group">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp"
+                            placeholder="Nom du tag" value="<%= tag.name %>">
+                        <label for="name">Nom du tag</label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Modifier</button>
+                </form>
+            </div>
+        </div>
+<%- include('partials/footer') %>

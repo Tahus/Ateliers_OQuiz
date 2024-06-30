@@ -39,6 +39,12 @@ router.get('/disconnect', userController.disconnect);
 router.get('/profile', userController.profilePage);
 
 
+//modifier un tag
+router.get('/tag/select', adminMiddleware, tagController.selectTag);
+router.get('/tag/modify/:id', adminMiddleware, tagController.modifyTag);
+router.post('/tag/modify', adminMiddleware, tagController.modifyTagHandle);
+
+
 // admin
 router.get('/admin', adminMiddleware, adminController.adminPage);
 router.get('/tag/addTag', adminMiddleware, tagController.addTagPage);

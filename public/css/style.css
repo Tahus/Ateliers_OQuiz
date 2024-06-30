@@ -120,3 +120,15 @@
 .normal {
   color: black;
 }
+
+
+
+.result {
+  text-align: center;
+  color: rgb(25, 0, 255);
+}
+
+.error {
+  text-align: center;
+  color: red;
+}

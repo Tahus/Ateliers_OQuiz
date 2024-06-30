@@ -62,8 +62,60 @@ const tagController = {
       console.trace(err);
       res.status(500).send(err.message);
     }
-  }
+  },
 
+
+  // Modifier un tag existant (pour les admins)
+  // d'abord une méthode pour sélectionnet un tag à modifier
+  // puis une méthode pour modifier le tag
+  // Pas de modif de couleur ici car complexe
+
+
+  // Sélection d'un tag à modifier
+  selectTag : async (req, res) => {
+    try {
+      // je récupère tous les tags 
+      const tags = await Tag.findAll();
+      res.render('select_tag', {tags});
+    } catch (err) {
+      console.trace(err);
+      res.status(500).send(err.message);
+    }
+  },
+
+  //C'est ici que je vais pouvoir choisir le tag à modifier
+  // J'ai donc besoin de l'id en fonction du choix de l'utilisateur
+  modifyTag: async (req, res) => {
+    try {
+      // je récupère le tag à modifier
+      const tag = await Tag.findByPk(req.params.id);
+
+      console.log('tag à modifier',tag);
+
+      res.render('modify_tag', {tag});
+    } catch (err) {
+      console.trace(err);
+      res.status(500).send(err.message);
+    }
+  },
+
+ // Une fois le tag modifié je redirige vers la liste des tags
+  modifyTagHandle: async (req, res) => {
+    try {
+      // je récupère le tag à modifier
+      const tag = await Tag.update({
+        name: req.body.name
+      }, {
+        where: {
+          id: parseInt(req.body.id, 10)
+        }
+      });
+      res.redirect('/tags');
+    } catch (err) {
+      console.trace(err);
+      res.status(500).send(err.message);
+    }
+  }
 
 };
 
