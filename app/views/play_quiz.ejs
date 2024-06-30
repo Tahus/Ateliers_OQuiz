@@ -11,9 +11,15 @@
 
     <% for (let tag of quiz.tags) { %>
     <div class="col-3 p-4 text-center">
-        <a class="btn btn-block btn-lg tag tag--<%= tag.name.toLowerCase() %>" href="/quizzes/tag/<%= tag.id %>">
-            <%= tag.name %>
-        </a>
+        <% if (tag.color) {%>
+            <a class="btn btn-block tag " style="background-color: <%= tag.color.toLowerCase() %>" href="/tag/<%= tag.id %>"></a>
+                <%= tag.name %>
+            </a>
+        <%} else {%>
+            <a class="btn btn-block tag tag--<%= tag.name.toLowerCase() %>" href="/tag/<%= tag.id %>">
+                <%= tag.name %>
+            </a>
+        <%}%>
     </div>
     <% } %>
 
@@ -21,36 +27,30 @@
 
 <div class="row">
     <form method="POST">
-        <%# Je boucle sur chaque question du quiz %>
         <% for(let question of quiz.questions) { %>
-
-            <div class="col-12">
-                <label class="badge level level--<%= question.level.name.toLowerCase() %>"><%= question.level.name %></label>
-                <h4>
-                    <%= question.question %>
-                </h4>
-                <ul class="list-unstyled ml-5">
-                    <% for(let index in question.answers){ %>
-                    <%# Je boucle sur chaque réponse possible pour une question %>
-                    <%# Je place un bouton radio avec un name en commun afin de ne permettre qu'un seul choix à l'utilisateur %>
-                    <%# Je utilise value pour stocker l'id en BDD de la réponse en cours %>
-                    <%# au click sur valider, dans body.request, j'obtiendrais une valeur par question, de la forme :
-                        question_X: id_reponse_selectionnee_par_user
-                    
-                    et ce pour chaque question %>
-
-                    <li><input type="radio" name="question_<%= question.id %>" 
-                        id="answer_<%= question.id %>_<%= question.answers[index].id %>" value="<%=question.answers[index].id %>">
-                        <label for="answer_<%= question.id %>_<%= question.answers[index].id %>"><%= question.answers[index].description %></label>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
+        <div class="col-12">
+            <label class="badge level level--<%= question.level.name.toLowerCase() %>"><%= question.level.name %></label>
+            <h4>
+                <%= question.question %>
+            </h4>
+            <ul class="list-unstyled ml-5">
+                <% for(let index in question.answers){ %>
+                <%# on boucle sur chaque réponse possible pour une question %>
+                <%# on place un bouton radio avec un name en commun afin de ne permettre qu'un seul choix à l'utilisateur %>
+                <%# on utilise value pour stocker l'id en BDD de la réponse en cours %>
+                <%# au click sur valider, dans body.request, on obtiendra une valeur par question, de la forme :
+                    question_X: id_reponse_selectionnee_par_user
+                
+                et ce pour chaque question %>
+                <li><input type="radio" name="question_<%= question.id %>" 
+                    id="answer_<%= question.id %>_<%= question.answers[index].id %>" value="<%=question.answers[index].id %>">
+                    <label for="answer_<%= question.id %>_<%= question.answers[index].id %>"><%= question.answers[index].description %></label>
+                </li>
+                <% } %>
+            </ul>
+        </div>
         <% } %>
-
         <button class="btn btn-lg btn-primary btn-block" type="submit">Valider</button>
-
     </form>
 </div>
-
 <%- include('partials/footer') %>

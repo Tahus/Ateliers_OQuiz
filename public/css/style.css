@@ -95,3 +95,28 @@
     background-color: #86a78e;
     border-color: #889e8d;
   }
+
+
+
+/* affichage du nombre de points */
+.score {
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+
+/* classes pour affichage des bonnes et mauvaises réponses */
+.good {
+  color: green
+}
+
+.bad {
+  color: red;
+}
+
+.normal {
+  color: black;
+}
