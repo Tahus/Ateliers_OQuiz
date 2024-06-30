@@ -41,4 +41,11 @@ router.get('/profile', userController.profilePage);
 
 // admin
 router.get('/admin', adminMiddleware, adminController.adminPage);
+router.get('/tag/addTag', adminMiddleware, tagController.addTagPage);
+router.post('/tag/addTag', adminMiddleware, tagController.addTagAction);
+
+
+
+
+
 module.exports = router;

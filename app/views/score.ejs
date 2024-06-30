@@ -13,9 +13,15 @@
 
     <% for (let tag of quiz.tags) { %>
     <div class="col-3 p-4 text-center">
-        <a class="btn btn-block tag tag--<%= tag.name.toLowerCase() %>" href="/tag/<%= tag.id %>">
-            <%= tag.name %>
-        </a>
+        <% if (tag.color) {%>
+            <a class="btn btn-block tag " style="background-color: <%= tag.color %>"href="/tag/<%= tag.id %>">
+                <%= tag.name %>
+            </a>
+        <%} else {%>
+            <a class="btn btn-block tag tag--<%= tag.name.toLowerCase() %>" href="/tag/<%= tag.id %>">
+                <%= tag.name %>
+            </a>
+        <%}%>
     </div>
     <% } %>
 
